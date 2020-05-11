@@ -1,5 +1,4 @@
 import model from './model';
-import { resolve } from 'dns';
 class user extends model{
   
   constructor(){
@@ -7,12 +6,22 @@ class user extends model{
   }
 
   getUsers(){
-      let sql = 'select * from users';
-      return this.query(sql);
+    let sql = 'select * from users';
+    return this.query(sql);
   }
 
-  insertUser(req){
-
+  insertUser(params){
+    let sql = "\
+      INSERT INTO users(\
+        name,\
+        email,\
+        password\
+      )VALUES("+
+        "'"+params.name+"',"+
+        "'"+params.email+"',"+
+        "'"+params.password+"'"
+      +")"
+    return this.query(sql);
   }
 
 }

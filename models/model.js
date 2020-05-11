@@ -22,7 +22,8 @@ class model{
   query(sql=null){ 
     return new Promise( (resolve, reject)=>{
       this.db.query(sql, (err, result) => {
-        resolve( result );
+        if(err) reject(err);
+        resolve( result ); 
       });
     });
   }
